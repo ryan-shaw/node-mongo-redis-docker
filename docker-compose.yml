@@ -1,0 +1,17 @@
+db:
+  image: mongo:3.2.4
+  ports:
+    - "27017"
+redis:
+  image: redis:3.0.7
+  ports:
+    - "6379"
+app:
+  build: .
+  links:
+    - db
+    - redis
+  ports:
+    - "8080"
+  volumes:
+    - ./app:/src/app
